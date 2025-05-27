@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MP3 Segment Matcher</title>
+</head>
+<body>
+    <h2>🎧 MP3 Segment Matcher</h2>
+    <form method="POST" enctype="multipart/form-data">
+        <p>Upload Full MP3: <input type="file" name="full_mp3" required></p>
+        <p>Upload Sample MP3: <input type="file" name="sample_mp3" required></p>
+        <p>Similarity Threshold (%): <input type="number" name="similarity" value="10" min="10" max="100" required></p>
+        <p><input type="submit" value="Match Segments"></p>
+    </form>
+
+    {% if matches %}
+        <h3>Matched Segments</h3>
+        <ul>
+            {% for match in matches %}
+                <li>
+                    <b>{{ match.start }} → {{ match.end }}</b> ({{ match.similarity }})
+                    <br>
+                    <audio controls>
+                        <source src="{{ url_for('serve_segment', filename=match.filename) }}" type="audio/mp3">
+                        Your browser does not support the audio element.
+                    </audio>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
