@@ -1,2 +1,19 @@
 upload MP3s, set a similarity threshold, and interactively detect and play audio segments matching a sample clip.
 
+pip install flask pydub numpy scipy
+
+
+project/
+├── app.py                # Flask backend with logic
+├── templates/
+│   └── index.html        # Web interface
+├── static/
+│   ├── uploads/          # Stores uploaded files
+│   └── segments/         # Stores matched audio clips
+└── match_log.txt         # (Optional) match log
+
+
+python app.py to run the project
+
+http://127.0.0.1:5001/
+
